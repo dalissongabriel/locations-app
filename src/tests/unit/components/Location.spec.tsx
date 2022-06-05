@@ -1,4 +1,4 @@
-import Location from "@/features/Locations/Location";
+import Location from "@/features/locations/Location";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 

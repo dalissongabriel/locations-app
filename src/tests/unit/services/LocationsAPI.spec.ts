@@ -1,4 +1,4 @@
-import { fetchListLocations } from "@/features/Locations/LocaltionsAPI";
+import { fetchListLocations } from "@/features/locations/LocaltionsAPI";
 import locationsValidResponse from "@/mocks/data/locationsValidResponse.json";
 import { describe, expect, it } from "vitest";
 

@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { Map } from "@/components/Map";
 import Search from "@/components/Search";
+import Address from "@/features/Locations/Location";
 import {
   addFavorite,
   fetchList,
@@ -9,11 +10,10 @@ import {
   selectFavorites,
   selectFilteredResults,
   setSearchQuery,
-} from "@/features/Addresses/AddressesSlice";
-import Address from "@/features/Addresses/components/Address";
+} from "@/features/Locations/LocationsSlice";
 import React, { useEffect, useState } from "react";
 
-export default function Home() {
+const Locations = () => {
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState("");
   const status = useAppSelector(selectAddressesStatus);
@@ -109,4 +109,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Locations;

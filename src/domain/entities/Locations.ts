@@ -1,4 +1,4 @@
-export interface IAddress {
+export interface ILocation {
   id: number;
   name: string;
   place: string;

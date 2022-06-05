@@ -1,5 +1,5 @@
-import addressesHandlers from "@/mocks/handlers/addressesHandlers";
+import locationsHandlers from "@/mocks/handlers/locationsHandlers";
 
-const handlers = [...addressesHandlers];
+const handlers = [...locationsHandlers];
 
 export default handlers;

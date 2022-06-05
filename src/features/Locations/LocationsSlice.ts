@@ -1,29 +1,29 @@
 import { RootState } from "@/app/store";
-import { IAddress } from "@/features/Addresses/types";
-import { fetchListAddresses } from "@/features/Addresses/AddressesAPI";
+import { ILocation } from "@/domain/entities";
+import { fetchListLocations } from "@/features/Locations/LocaltionsAPI";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export interface AddressesState {
+export interface LocationsState {
   query: string;
-  list: IAddress[];
+  list: ILocation[];
   favorites: number[];
   status: "idle" | "loading" | "failed";
 }
 
-const initialState: AddressesState = {
+const initialState: LocationsState = {
   query: "",
   list: [],
   favorites: [],
   status: "idle",
 };
 
-export const fetchList = createAsyncThunk("addresses/fetchList", async () => {
-  const response = await fetchListAddresses();
+export const fetchList = createAsyncThunk("locations/fetchList", async () => {
+  const response = await fetchListLocations();
   return response.data;
 });
 
-export const addressesSlice = createSlice({
-  name: "addresses",
+export const locationsSlice = createSlice({
+  name: "locations",
   initialState,
   reducers: {
     setSearchQuery: (state, action) => {
@@ -48,25 +48,19 @@ export const addressesSlice = createSlice({
   },
 });
 
-export const selectQuery = (state: RootState) => state.addresses.query;
-export const selectList = (state: RootState) => state.addresses.list;
+export const selectQuery = (state: RootState) => state.locations.query;
+export const selectList = (state: RootState) => state.locations.list;
 export const selectAddressesStatus = (state: RootState) =>
-  state.addresses.status;
-export const selectFavorites = (state: RootState) => state.addresses.favorites;
-
-export const selectFavoritesResults = (state: RootState) => {
-  return state.addresses.list.filter((result) =>
-    state.addresses.favorites.includes(result.id)
-  );
-};
+  state.locations.status;
+export const selectFavorites = (state: RootState) => state.locations.favorites;
 
 export const selectFilteredResults = (state: RootState) => {
-  const query = state.addresses.query.toLowerCase();
-  return state.addresses.list.filter((address) =>
+  const query = state.locations.query.toLowerCase();
+  return state.locations.list.filter((address) =>
     address.place.toLowerCase().includes(query)
   );
 };
 
 export const { setSearchQuery, addFavorite, removeFavorite } =
-  addressesSlice.actions;
-export default addressesSlice.reducer;
+  locationsSlice.actions;
+export default locationsSlice.reducer;

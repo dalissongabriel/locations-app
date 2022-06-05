@@ -1,8 +1,8 @@
-import addressesReducer from "@/features/Addresses/AddressesSlice";
+import locationsReducer from "@/features/Locations/LocationsSlice";
 import { combineReducers } from "@reduxjs/toolkit";
 
 const rootReducer = combineReducers({
-  addresses: addressesReducer,
+  locations: locationsReducer,
 });
 
 export default rootReducer;

@@ -17,8 +17,21 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     coverage: {
-      excludeNodeModules: true,
-      exclude: ["./src/tests/**"],
+      all: true,
+      include: [
+        "src/features/**",
+        "src/components/**",
+        "src/services/**",
+        "src/utils/**",
+        "src/app/**",
+      ],
+      exclude: [
+        "node_modules/**",
+        "src/tests/**",
+        "dist/**",
+        "public/**",
+        "src/app/store.ts",
+      ],
     },
     setupFiles: ["./src/tests/setup.ts"],
   },

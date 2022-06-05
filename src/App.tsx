@@ -1,17 +1,11 @@
-import Search from "@/components/Search";
-import React, { useState } from "react";
+import Addresses from "@/features/Addresses/pages/Addresses";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-  const [search, setSearch] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
-
   return (
-    <div>
-      <Search onChangeHandle={handleChange} />
-    </div>
+    <Routes>
+      <Route path="/" element={<Addresses />} />
+    </Routes>
   );
 }
 

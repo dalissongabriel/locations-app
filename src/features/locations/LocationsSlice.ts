@@ -1,6 +1,6 @@
 import { RootState } from "@/app/store";
 import { ILocation } from "@/domain/entities";
-import { fetchListLocations } from "@/features/Locations/LocaltionsAPI";
+import { fetchListLocations } from "@/features/locations/LocaltionsAPI";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface LocationsState {
@@ -50,14 +50,13 @@ export const locationsSlice = createSlice({
 
 export const selectQuery = (state: RootState) => state.locations.query;
 export const selectList = (state: RootState) => state.locations.list;
-export const selectAddressesStatus = (state: RootState) =>
-  state.locations.status;
+export const selectStatus = (state: RootState) => state.locations.status;
 export const selectFavorites = (state: RootState) => state.locations.favorites;
 
 export const selectFilteredResults = (state: RootState) => {
   const query = state.locations.query.toLowerCase();
-  return state.locations.list.filter((address) =>
-    address.place.toLowerCase().includes(query)
+  return state.locations.list.filter((location) =>
+    location.place.toLowerCase().includes(query)
   );
 };
 

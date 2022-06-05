@@ -1,4 +1,4 @@
-import Locations from "@/features/Locations/Locations";
+import Locations from "@/features/locations/Locations";
 import { render, screen, waitFor } from "@/tests/testUtils";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";

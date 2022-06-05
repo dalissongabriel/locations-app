@@ -1,22 +1,22 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { Map } from "@/components/Map";
 import Search from "@/components/Search";
-import Address from "@/features/Locations/Location";
+import Location from "@/features/locations/Location";
 import {
   addFavorite,
   fetchList,
   removeFavorite,
-  selectAddressesStatus,
   selectFavorites,
   selectFilteredResults,
+  selectStatus,
   setSearchQuery,
-} from "@/features/Locations/LocationsSlice";
+} from "@/features/locations/LocationsSlice";
 import React, { useEffect, useState } from "react";
 
 const Locations = () => {
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState("");
-  const status = useAppSelector(selectAddressesStatus);
+  const status = useAppSelector(selectStatus);
   const results = useAppSelector(selectFilteredResults);
   const favoriteIdsList = useAppSelector(selectFavorites);
   const [favoriteFilter, setFavoriteFilter] = useState(false);
@@ -90,7 +90,7 @@ const Locations = () => {
               )}
               {resultsList.map((result, index) => (
                 <li key={index}>
-                  <Address
+                  <Location
                     name={result.name}
                     title={result.place}
                     image={result.image}

@@ -1,14 +1,11 @@
 import { RootState } from "@/app/store";
-import homeReducer, {
-  addFavorite,
+import {
   LocationsState,
-  removeFavorite,
   selectFavorites,
   selectFilteredResults,
   selectList,
   selectQuery,
-  setSearchQuery,
-} from "@/features/Locations/LocationsSlice";
+} from "@/features/locations/LocationsSlice";
 import locationsValidResponse from "@/mocks/data/locationsValidResponse.json";
 import { describe, expect, it } from "vitest";
 
@@ -19,37 +16,7 @@ const state: LocationsState = {
   status: "idle",
 };
 
-describe("Addresses reducers", () => {
-  it("should handle initial state", () => {
-    const initialState: LocationsState = state;
-    const action = { type: "unknown" };
-    const expectedState = initialState;
-    expect(homeReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  it("should handle setSearchQuery", () => {
-    const initialState: LocationsState = { ...state, query: "" };
-    const action = setSearchQuery("test");
-    const expectedState: LocationsState = { ...state, query: "test" };
-    expect(homeReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  it("should handle addFavorite", () => {
-    const initialState: LocationsState = { ...state, favorites: [] };
-    const action = addFavorite(1);
-    const expectedState: LocationsState = { ...state, favorites: [1] };
-    expect(homeReducer(initialState, action)).toEqual(expectedState);
-  });
-
-  it("should handle removeFavorite", () => {
-    const initialState: LocationsState = { ...state, favorites: [1] };
-    const action = removeFavorite(1);
-    const expectedState: LocationsState = { ...state, favorites: [] };
-    expect(homeReducer(initialState, action)).toEqual(expectedState);
-  });
-});
-
-describe("Addresses selectors", () => {
+describe("Locations selectors", () => {
   it("#selectQuery - should return query param when filled", () => {
     const expected = "banana";
     const locations: LocationsState = { ...state, query: expected };

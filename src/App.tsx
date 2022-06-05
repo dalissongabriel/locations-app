@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Locations from "./features/Locations/Locations";
+import Locations from "./features/locations/Locations";
 
 function App() {
   return (

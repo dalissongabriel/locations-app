@@ -1,6 +1,6 @@
 import { HeartIcon } from "@/components/HeartIcon";
 
-interface ItemProps {
+interface LocationProps {
   image: string;
   title: string;
   price: number;
@@ -9,14 +9,14 @@ interface ItemProps {
   onCLickHandle: () => void;
 }
 
-const Address = ({
+const Location = ({
   image,
   title,
   price,
   name,
   onCLickHandle,
   isFavorite,
-}: ItemProps) => {
+}: LocationProps) => {
   return (
     <div className="py-2 mx-auto " data-testid="location-card">
       <div className="p-4 bg-white rounded-lg  md:flex">
@@ -101,4 +101,4 @@ const Address = ({
   );
 };
 
-export default Address;
+export default Location;

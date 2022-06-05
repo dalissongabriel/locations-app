@@ -1,12 +1,12 @@
-import Address from "@/features/Addresses/components/Address";
+import Location from "@/features/Locations/Location";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-describe("Address component", () => {
+describe("Location component", () => {
   it("should be render correctly location not fav", () => {
     const mockOnClickHandle = vi.fn();
     render(
-      <Address
+      <Location
         image="https://dummyimage.com/520x380/000/fff"
         isFavorite={false}
         name="Placement name"
@@ -21,7 +21,7 @@ describe("Address component", () => {
   it("should be render correctly location as fav", () => {
     const mockOnClickHandle = vi.fn();
     render(
-      <Address
+      <Location
         image="https://dummyimage.com/520x380/000/fff"
         isFavorite={true}
         name="Placement name"

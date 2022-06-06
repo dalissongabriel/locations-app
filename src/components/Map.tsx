@@ -1,6 +1,6 @@
-import BGimage from "@/images/GoogleMapTA.webp";
+import BGimage from "@/assets/GoogleMapTA.webp";
 
-export function Map() {
+const Map = () => {
   return (
     <div className="flex flex-1">
       <img
@@ -10,4 +10,6 @@ export function Map() {
       />
     </div>
   );
-}
+};
+
+export default Map;

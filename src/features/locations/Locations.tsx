@@ -1,7 +1,4 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import { Map } from "@/components/Map";
-import Search from "@/components/Search";
-import Location from "@/features/locations/Location";
 import {
   addFavorite,
   fetchList,
@@ -11,15 +8,20 @@ import {
   selectStatus,
   setSearchQuery,
 } from "@/features/locations/LocationsSlice";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
+
+const Search = React.lazy(() => import("@/components/Search"));
+const Location = React.lazy(() => import("@/features/locations/Location"));
+const Map = React.lazy(() => import("@/components/Map"));
 
 const Locations = () => {
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState("");
+  const [favoriteFilter, setFavoriteFilter] = useState(false);
+
   const status = useAppSelector(selectStatus);
   const results = useAppSelector(selectFilteredResults);
   const favoriteIdsList = useAppSelector(selectFavorites);
-  const [favoriteFilter, setFavoriteFilter] = useState(false);
 
   const isInFavorites = (id: number) => {
     return favoriteIdsList.includes(id);
@@ -61,13 +63,29 @@ const Locations = () => {
     );
   }
 
+  if (status === "failed") {
+    return (
+      <div className="py-10 px-2 h-screen bg-gray-200">
+        <div className="overflow-hidden mx-auto max-w-md bg-gray-100 rounded-lg shadow-lg md:max-w-lg">
+          <div className="md:flex">
+            <div className="p-4 w-full">
+              <div>Failed!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="py-10 px-2 bg-gray-200 max-w-[80%] m-auto">
       <div>
         <div className="flex flex-col lg:flex-row">
           <div className="mxw-12 flex-1">
             <div className="flex justify-between items-center">
-              <Search onChangeHandle={handleSearch} />
+              <Suspense fallback="Loading search...">
+                <Search onChangeHandle={handleSearch} />
+              </Suspense>
               <div>
                 <button
                   className="py-2 px-4 h-12 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
@@ -90,21 +108,25 @@ const Locations = () => {
               )}
               {resultsList.map((result, index) => (
                 <li key={index}>
-                  <Location
-                    name={result.name}
-                    title={result.place}
-                    image={result.image}
-                    price={result.price}
-                    isFavorite={isInFavorites(result.id)}
-                    onCLickHandle={() => handleToggleFavorite(result.id)}
-                  />
+                  <Suspense fallback="Loading location...">
+                    <Location
+                      name={result.name}
+                      title={result.place}
+                      image={result.image}
+                      price={result.price}
+                      isFavorite={isInFavorites(result.id)}
+                      onCLickHandle={() => handleToggleFavorite(result.id)}
+                    />
+                  </Suspense>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="pt-2 px-8 items-center max-w-[800px] h-screen">
-            <Map />
-          </div>
+          <Suspense fallback="Loading map...">
+            <div className="pt-2 px-8 items-center max-w-[800px] h-screen">
+              <Map />
+            </div>
+          </Suspense>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
+import { baseURL } from "@/infra/HttpClient";
 import locationsValidResponse from "@/mocks/data/locationsValidResponse.json";
-import { baseURL } from "@/services/BaseAPI";
 import { rest } from "msw";
 
 const LocationsHandlers = [
@@ -7,7 +7,7 @@ const LocationsHandlers = [
     return res(
       ctx.status(200),
       ctx.json(locationsValidResponse),
-      ctx.delay(150)
+      ctx.delay(500)
     );
   }),
 ];

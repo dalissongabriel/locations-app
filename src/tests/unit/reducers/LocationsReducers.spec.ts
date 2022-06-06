@@ -14,28 +14,28 @@ const state: LocationsState = {
 };
 
 describe("Locations reducers", () => {
-  it("should handle initial state", () => {
+  it("#initialState - should handle initial state", () => {
     const initialState: LocationsState = state;
     const action = { type: "unknown" };
     const expectedState = initialState;
     expect(homeReducer(initialState, action)).toEqual(expectedState);
   });
 
-  it("should handle setSearchQuery", () => {
+  it("#setSearchQuery - should handle setSearchQuery", () => {
     const initialState: LocationsState = { ...state, query: "" };
     const action = setSearchQuery("test");
     const expectedState: LocationsState = { ...state, query: "test" };
     expect(homeReducer(initialState, action)).toEqual(expectedState);
   });
 
-  it("should handle addFavorite", () => {
+  it("#addFavorite - should handle addFavorite", () => {
     const initialState: LocationsState = { ...state, favorites: [] };
     const action = addFavorite(1);
     const expectedState: LocationsState = { ...state, favorites: [1] };
     expect(homeReducer(initialState, action)).toEqual(expectedState);
   });
 
-  it("should handle removeFavorite", () => {
+  it("#removeFavorite - should handle removeFavorite", () => {
     const initialState: LocationsState = { ...state, favorites: [1] };
     const action = removeFavorite(1);
     const expectedState: LocationsState = { ...state, favorites: [] };

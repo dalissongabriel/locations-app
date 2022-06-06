@@ -33,7 +33,7 @@ describe("Locations selectors", () => {
     expect(result).to.be.deep.equal(result);
   });
 
-  it("#selectFavorites return a collection of favorite locations", () => {
+  it("#selectFavorites - return a collection of favorite locations", () => {
     const list = locationsValidResponse;
     const { id: expected } = locationsValidResponse[2];
     const locations: LocationsState = {

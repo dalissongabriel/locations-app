@@ -1,8 +1,9 @@
 import { RootState } from "@/app/store";
-import { ILocation } from "@/domain/entities";
-import { fetchListLocations } from "@/features/locations/LocaltionsAPI";
+import { fetchListLocations } from "@/features/locations/LocationsService";
+import { ILocation } from "@/types/entities";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+export const locationsSliceName = "locations";
 export interface LocationsState {
   query: string;
   list: ILocation[];
@@ -17,13 +18,16 @@ const initialState: LocationsState = {
   status: "idle",
 };
 
-export const fetchList = createAsyncThunk("locations/fetchList", async () => {
-  const response = await fetchListLocations();
-  return response.data;
-});
+export const fetchList = createAsyncThunk(
+  `${locationsSliceName}/fetchList`,
+  async () => {
+    const response = await fetchListLocations();
+    return response.data;
+  }
+);
 
 export const locationsSlice = createSlice({
-  name: "locations",
+  name: locationsSliceName,
   initialState,
   reducers: {
     setSearchQuery: (state, action) => {
@@ -44,6 +48,9 @@ export const locationsSlice = createSlice({
       .addCase(fetchList.fulfilled, (state, action) => {
         state.status = "idle";
         state.list = action.payload;
+      })
+      .addCase(fetchList.rejected, (state) => {
+        state.status = "failed";
       });
   },
 });

@@ -32,15 +32,15 @@ npm run test:cov
 
 ## Ferramentas 🧰
 
+- [x] Husky: Ferramenta de git hooks (em todo commit, o script: test:staged é executado)
+- [x] MSW: Service Worker para mockar a integração http nos testes e na aplicação.
+- [x] React Testing Library: Um framework de testes de UI para React.
+- [x] React como uma linguagem de IU.
+- [x] Redux Toolkit como framework de fluxo de dados.
+- [x] Redux como gerenciador de estado.
+- [x] TailwindCss UI como nosso kit de ferramentas de design.
 - [x] Vite: Bundler javascript utilizado para "buildar" a aplicação.
 - [x] Vitest: Um test runner utilizado junto ao Vite.
-- [x] Husky: Ferramenta de git hooks (em todo commit, o script: test:staged é executado)
-- [x] React como uma linguagem de IU.
-- [x] React Testing Library: Um framework de testes de UI para React.
-- [x] Redux como gerenciador de estado.
-- [x] Redux Toolkit como framework de fluxo de dados.
-- [x] TailwindCss UI como nosso kit de ferramentas de design.
-- [x] MSW: Service Worker para mockar a integração http nos testes e na aplicação.
 
 ## Estrutura do Projeto 🏗
 

@@ -88,7 +88,7 @@ const Locations = () => {
               </Suspense>
               <div>
                 <button
-                  className="py-2 px-4 h-12 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                  className="py-2 px-4 h-12 font-bold text-white w-48 bg-pink-500 rounded hover:bg-pink-600 focus:outline-none focus:shadow-outline"
                   onClick={() => setFavoriteFilter(!favoriteFilter)}
                 >
                   {favoriteFilter ? "Show All" : "Show Favorites"}
